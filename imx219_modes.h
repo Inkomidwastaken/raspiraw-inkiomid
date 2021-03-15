@@ -704,6 +704,51 @@ struct sensor_regs imx219_stop[] = {
       {0x0100, 0x00},          /* disable streaming  */
 };
 
+static
+int imx219_set_crop(const struct sensor_def *sensor, struct mode_def *sensor_mode,
+                    const struct raspiraw_crop *cfg)
+{
+      if (cfg->hinc >= 0)
+      {
+            modReg(sensor_mode, 0x0170, 0, 2, cfg.hoinc, EQUAL);
+      }
+
+      if (cfg->vinc >= 0)
+      {
+            modReg(sensor_mode, 0x0171, 0, 2, cfg.voinc, EQUAL);
+      }
+
+      if (cfg->width > 0)
+      {
+            sensor_mode->width = cfg->width;
+            modReg(sensor_mode, 0x016C, 0, 3, cfg->width >>8, EQUAL);
+            modReg(sensor_mode, 0x016D, 0, 7, cfg->width &0xFF, EQUAL);
+      }
+
+      if (cfg->height > 0)
+      {
+            sensor_mode->height = cfg->height;
+            modReg(sensor_mode, 0x016E, 0, 3, cfg->height >>8, EQUAL);
+            modReg(sensor_mode, 0x016F, 0, 7, cfg->height &0xFF, EQUAL);
+      }
+
+      if (cfg->left > 0)
+      {
+            int val = cfg->left * sensor_mode->binning;
+            modReg(sensor_mode, 0x0164, 0, 3, val >>8, EQUAL);
+            modReg(sensor_mode, 0x0165, 0, 7, val &0xFF, EQUAL);
+      }
+
+      if (cfg->top > 0)
+       {
+            int val = cfg->top * sensor_mode->binning;
+            modReg(sensor_mode, 0x0168, 0, 3, val >>8, EQUAL);
+            modReg(sensor_mode, 0x0169, 0, 7, val &0xFF, EQUAL);
+      }
+
+      return 0;
+}
+
 // ID, exposure, and gain register settings taken from
 // https://android.googlesource.com/kernel/bcm/+/android-bcm-tetra-3.10-lollipop-wear-release/drivers/media/video/imx219.c
 // Flip settings taken from https://github.com/rellimmot/Sony-IMX219-Raspberry-Pi-V2-CMOS/blob/master/imx219mipiraw_Sensor.c#L585
@@ -733,6 +778,8 @@ struct sensor_def imx219 = {
 
       .gain_reg =             0x0157,
       .gain_reg_num_bits =    8,    //Only valid up to 230.
+
+      .set_crop =             imx219_set_crop,
 };
 
 #endif
