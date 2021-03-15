@@ -710,12 +710,12 @@ int imx219_set_crop(const struct sensor_def *sensor, struct mode_def *sensor_mod
 {
       if (cfg->hinc >= 0)
       {
-            modReg(sensor_mode, 0x0170, 0, 2, cfg.hoinc, EQUAL);
+            modReg(sensor_mode, 0x0170, 0, 2, cfg.hinc, EQUAL);
       }
 
       if (cfg->vinc >= 0)
       {
-            modReg(sensor_mode, 0x0171, 0, 2, cfg.voinc, EQUAL);
+            modReg(sensor_mode, 0x0171, 0, 2, cfg.vinc, EQUAL);
       }
 
       if (cfg->width > 0)
