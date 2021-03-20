@@ -583,6 +583,7 @@ struct mode_def imx219_modes[] = {
       .timing        = {0, 0, 0, 0, 0},
       .term          = {0, 0},
       .black_level   = 66,
+      .binning       = 1,
    },
    {
       .regs          = imx219_mode1,
@@ -599,6 +600,7 @@ struct mode_def imx219_modes[] = {
       .timing        = {0, 0, 0, 0, 0},
       .term          = {0, 0},
       .black_level   = 66,
+      .binning       = 1,
    },
    {
       .regs          = imx219_mode2,
@@ -615,6 +617,7 @@ struct mode_def imx219_modes[] = {
       .timing        = {0, 0, 0, 0, 0},
       .term          = {0, 0},
       .black_level   = 66,
+      .binning       = 1,
    },
    {
       .regs          = imx219_mode3,
@@ -631,6 +634,7 @@ struct mode_def imx219_modes[] = {
       .timing        = {0, 0, 0, 0, 0},
       .term          = {0, 0},
       .black_level   = 66,
+      .binning       = 1,
    },
    {
       .regs          = imx219_mode4,
@@ -647,6 +651,7 @@ struct mode_def imx219_modes[] = {
       .timing        = {0, 0, 0, 0, 0},
       .term          = {0, 0},
       .black_level   = 66,
+      .binning       = 2,
    },
    {
       .regs          = imx219_mode5,
@@ -663,6 +668,7 @@ struct mode_def imx219_modes[] = {
       .timing        = {0, 0, 0, 0, 0},
       .term          = {0, 0},
       .black_level   = 66,
+      .binning       = 2,
    },
    {
       .regs          = imx219_mode6,
@@ -679,6 +685,7 @@ struct mode_def imx219_modes[] = {
       .timing        = {0, 0, 0, 0, 0},
       .term          = {0, 0},
       .black_level   = 66,
+      .binning       = 2,
    },
    {
       .regs          = imx219_mode7,
@@ -695,6 +702,7 @@ struct mode_def imx219_modes[] = {
       .timing        = {0, 0, 0, 0, 0},
       .term          = {0, 0},
       .black_level   = 66,
+      .binning       = 2,
    },
 };
 
